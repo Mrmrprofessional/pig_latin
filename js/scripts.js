@@ -1,14 +1,29 @@
 
-var pigLatin = function(string) {
-    var lowerString = string.toLowerCase();
-    var first = lowerString.charAt(0);
-    if (first == "a" || "e" || "i" || "u" || "o") //and sometimes"y"
+var pigLatin = function(string)
     {
-        var result = (lowerString + "ay");
+        console.log(string);
+    var lowerString = string.toLowerCase();
+    console.log(lowerString[0]);
+    var vowels = ["a", "e", "i", "o", "u"];
+    var index = vowels.indexOf(lowerString[0]);
+    if(lowerString[0].match(/[aeiou]/g)){
+        var result = lowerString + 'ay';
+    }else{
+        var add = lowerString + lowerString.charAt(0);
+        var slice = add.slice(1);
+        var result = pigLatin(slice);
     }
-    console.log(result);
     return result;
 }
+
+
+
+
+// else if (letter !== "a" || "e" || "i" || "u" || "o"){
+//     letter !==
+// }
+
+
 
 // $(document).ready(function() {
 //   $("form#text").submit(function(event) {
