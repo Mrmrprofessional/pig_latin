@@ -11,20 +11,24 @@ var words = function(words){
 
 
 var pigLatin = function(string){
+    var counter = 0;
     var lowerString = string.toLowerCase();
     if(lowerString[0].match(/[q]/g)){
         var add = lowerString + "qu";
         var slice = add.slice(2);
+        counter++;
         var result = pigLatin(slice);
-    }else if(lowerString[0].match(/[y]/g)){
+    }else if(lowerString[0].match(/[y]/g) && counter > 0){
         var add = lowerString + "y";
         var slice = add.slice(1);
+        counter++;
         var result = pigLatin(slice);
     }else if(lowerString[0].match(/[aeiouy]/g)){
         var result = lowerString + 'ay';
     }else{
         var add = lowerString + lowerString.charAt(0);
         var slice = add.slice(1);
+        counter++;
         var result = pigLatin(slice);
     }
     return result;
@@ -33,13 +37,15 @@ var pigLatin = function(string){
 
 
 
-
-
-// else if (letter !== "a" || "e" || "i" || "u" || "o"){
-//     letter !==
-// }
-
-
+$(document).ready(function() {
+    $("form#text").submit(function(event){
+        var string = $("input#string").val();
+        var result = words(string);
+        $(".string").text(result);
+        $("#result").show();
+        event.preventDefault();
+    });
+});
 
 // $(document).ready(function() {
 //   $("form#text").submit(function(event) {
